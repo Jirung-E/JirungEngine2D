@@ -45,28 +45,28 @@ Vector Vector::operator-() {
 }
 
 
-Vector Vector::operator+=(const Vector& vector) {
+Vector& Vector::operator+=(const Vector& vector) {
     x += vector.x;
     y += vector.y;
     z += vector.z;
     return *this;
 }
 
-Vector Vector::operator-=(const Vector& vector) {
+Vector& Vector::operator-=(const Vector& vector) {
     x -= vector.x;
     y -= vector.y;
     z -= vector.z;
     return *this;
 }
 
-Vector Vector::operator*=(float n) {
+Vector& Vector::operator*=(float n) {
     x *= n;
     y *= n;
     z *= n;
     return *this;
 }
 
-Vector Vector::operator/=(float n) {
+Vector& Vector::operator/=(float n) {
     x /= n;
     y /= n;
     z /= n;
@@ -116,6 +116,6 @@ bool Math::isOrthogonal(const Vector& vector1, const Vector& vector2) {
 
 
 std::ostream& Math::operator<<(std::ostream& os, Vector v) {
-    os << "(" << v.x << ", " << v.y << ", " << v.z << ")";
+    os << "<" << v.x << ", " << v.y << ", " << v.z << ">";
     return os;
 }

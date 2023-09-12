@@ -25,10 +25,10 @@ namespace Math {
 
         Vector operator-();
 
-        Vector operator+=(const Vector& vector);
-        Vector operator-=(const Vector& vector);
-        Vector operator*=(float n);
-        Vector operator/=(float n);
+        Vector& operator+=(const Vector& vector);
+        Vector& operator-=(const Vector& vector);
+        Vector& operator*=(float n);
+        Vector& operator/=(float n);
 
         bool operator==(const Vector& vector) const;
         bool operator!=(const Vector& vector) const;
