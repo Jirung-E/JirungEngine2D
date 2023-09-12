@@ -5,6 +5,41 @@
 
 
 namespace Math {
+    void testPoint() {
+        using namespace Math;
+        using namespace std;
+
+        cout << "Point test" << endl;
+
+        Point v1 { 1.0f, 2.0f, 3.0f };
+        Point v2 { 2.0f, 3.0f, 4.0f };
+        assert(v1 == v1);
+        assert(v1 + v2 == Point(3.0f, 5.0f, 7.0f));
+        assert(v1 - v2 == Point(-1.0f, -1.0f, -1.0f));
+        assert(v1 * 2.0f == Point(2.0f, 4.0f, 6.0f));
+        assert(v1 / 2.0f == Point(0.5f, 1.0f, 1.5f));
+        assert(v1 != v2);
+
+        Point v1_copy = v1;
+        assert(v1_copy == v1);
+        assert((v1_copy += v2) == Point(3.0f, 5.0f, 7.0f));
+        assert((v1_copy -= v2) == Point(1.0f, 2.0f, 3.0f));
+        assert((v1_copy *= 2.0f) == Point(2.0f, 4.0f, 6.0f));
+        assert((v1_copy /= 2.0f) == Point(1.0f, 2.0f, 3.0f));
+
+        assert(v1 * 2.0f * 3.0f == Point(6.0f, 12.0f, 18.0f));
+        assert(v1 / 2.0f / 3.0f == v1 / 6.0f);
+        assert(v1 + v2 + v1_copy == Point(4.0f, 7.0f, 10.0f));
+        assert(v1 - v2 - v1_copy == Point(-2.0f, -3.0f, -4.0f));
+        assert(v1 + v2 * 2.0f == Point(5.0f, 8.0f, 11.0f));
+        assert(v1 - v2 * 2.0f == Point(-3.0f, -4.0f, -5.0f));
+
+        assert(distanceBetween(v1, v2) == sqrt(3.0f));
+        assert(distanceBetween(v2, v1) == sqrt(3.0f));
+
+        cout << "test passed" << endl << endl;
+    }
+
     void testVector() {
         using namespace Math;
         using namespace std;

@@ -7,6 +7,7 @@ using namespace Math;
 
 
 int main() {
+    testPoint();
     testVector();
     testMatrix();
 

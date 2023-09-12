@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Math\Test">
       <UniqueIdentifier>{ef1a8107-591e-4378-94ee-f04ccb506bdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{cba265f7-60df-424c-9049-f284a9b05643}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -34,6 +37,9 @@
     <ClCompile Include="src\Math\Vector.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="src\Math\Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Math\Matrix.h">
@@ -44,6 +50,12 @@
     </ClInclude>
     <ClInclude Include="src\Math\Test\Test.h">
       <Filter>Source Files\Math\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Math.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Point.h">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

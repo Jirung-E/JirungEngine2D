@@ -133,10 +133,13 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Math\Matrix.cpp" />
+    <ClCompile Include="src\Math\Point.cpp" />
     <ClCompile Include="src\Math\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Math\Math.h" />
     <ClInclude Include="src\Math\Matrix.h" />
+    <ClInclude Include="src\Math\Point.h" />
     <ClInclude Include="src\Math\Test\Test.h" />
     <ClInclude Include="src\Math\Vector.h" />
   </ItemGroup>
