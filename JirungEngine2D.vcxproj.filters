@@ -40,7 +40,7 @@
     <ClCompile Include="src\Object\Object.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\Circle.cpp">
+    <ClCompile Include="src\Object\Ball.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="src\Math\Point.cpp">
@@ -66,7 +66,7 @@
     <ClInclude Include="src\Object\Object.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\Circle.h">
+    <ClInclude Include="src\Object\Ball.h">
       <Filter>Source Files\Object</Filter>
     </ClInclude>
   </ItemGroup>

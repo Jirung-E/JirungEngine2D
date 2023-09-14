@@ -135,7 +135,7 @@
     <ClCompile Include="src\Math\Matrix.cpp" />
     <ClCompile Include="src\Math\Point.cpp" />
     <ClCompile Include="src\Math\Vector.cpp" />
-    <ClCompile Include="src\Object\Circle.cpp" />
+    <ClCompile Include="src\Object\Ball.cpp" />
     <ClCompile Include="src\Object\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +144,7 @@
     <ClInclude Include="src\Math\Point.h" />
     <ClInclude Include="src\Math\Test\Test.h" />
     <ClInclude Include="src\Math\Vector.h" />
-    <ClInclude Include="src\Object\Circle.h" />
+    <ClInclude Include="src\Object\Ball.h" />
     <ClInclude Include="src\Object\Object.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

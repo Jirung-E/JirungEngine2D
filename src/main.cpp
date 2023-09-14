@@ -3,7 +3,7 @@
 #include <chrono>
 #include <conio.h>
 
-#include "Object/Circle.h"
+#include "Object/Ball.h"
 
 using namespace std;
 using namespace Math;
@@ -11,9 +11,9 @@ using namespace JirungEngine;
 
 
 int main() {
-    Circle* circle = new Circle { { 500, 500 }, 250.0f };
-    circle->acceleration = { 0.0f, 0.000001f };
-    circle->velocity = { 0.05f, 0.0f };
+    Ball* ball = new Ball { { 500, 500 }, 250.0f };
+    ball->acceleration = { 0.0f, 0.000001f };
+    ball->velocity = { 0.05f, 0.0f };
 
     int world_width = 12000;
     int world_height = 2700;
@@ -38,22 +38,22 @@ int main() {
     };
 
     auto showFrame = [&]() {
+        string str = "";
+        str.reserve(frame_height * (frame_width+1));
         for(int i=0; i<frame_height; i++) {
             string s = frame[i];
             s.resize(frame_width);
-            cout << s << endl;
-            //for(int j=0; j<frame_width; j++) {
-            //    cout << frame[i][j];
-            //}
-            //cout << endl;
+            str += s;
+            str += "\n";
         }
+        cout << str;
     };
 
     auto drawCircle = [&]() {
-        float d = circle->radius * 2;
+        float d = ball->radius * 2;
         for(int i=0; i<d; i++) {
             for(int j=0; j<d; j++) {
-                Point p = { (circle->position.x - circle->radius + i + 0.5f) / 100, (circle->position.y - circle->radius + j + 0.5f)/100 };
+                Point p = { (ball->position.x - ball->radius + i + 0.5f) / 100, (ball->position.y - ball->radius + j + 0.5f)/100 };
                 if(isInFrame(p)) {
                     if(d*d/4.0 >(i+0.5-d/2.0)*(i+0.5-d/2.0) + (j+0.5-d/2.0)*(j+0.5-d/2.0)) {
                         frame[(int)p.y][(int)p.x] = '@';
@@ -70,28 +70,29 @@ int main() {
     while(true) {
         clearFrame();
 
-        circle->update();
+        ball->update();
 
-        if(circle->position.y + circle->radius >= world_height || circle->position.y - circle->radius < 0) {
-            circle->velocity.y *= -1;
+        if(ball->position.y + ball->radius >= world_height || ball->position.y - ball->radius < 0) {
+            ball->velocity.y *= -1;
         }
-        if(circle->position.x + circle->radius >= world_width || circle->position.x - circle->radius < 0) {
-            circle->velocity.x *= -1;
+        if(ball->position.x + ball->radius >= world_width || ball->position.x - ball->radius < 0) {
+            ball->velocity.x *= -1;
         }
 
         auto end_time = chrono::system_clock::now();
-        if(chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count() >= 10) {       // ????????
+        auto duration = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+        if(duration >= 10) {
             printf("\x1b[0;0H");
             cout << "fps: " << fps << "                " << endl;
             drawCircle();
             showFrame();
-            fps = 1.0f / chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count() * 1000;
+            fps = 1.0f / duration * 1000;
             start_time = end_time;
 
         }
     }
 
-    delete circle;
+    delete ball;
 
     return 0;
 }
