@@ -11,14 +11,15 @@ using namespace JirungEngine;
 
 
 int main() {
-    Ball* ball = new Ball { { 500, 500 }, 250.0f };
-    ball->acceleration = { 0.0f, 3.0f };
-    ball->velocity = { 0.0f, 0.0f };
+    Ball* ball = new Ball { { 50, 50 }, 25.0f };
+    ball->acceleration = { 0.0f, 0.0f };
+    ball->velocity = { 0.5f, -0.5f };
 
-    int world_width = 12000;
-    int world_height = 2700;
-    int frame_width = 120;
-    int frame_height = 27;
+    int world_width = 1200;
+    int world_height = 270;
+    float scale_ratio = 0.1f;
+    int frame_width = world_width * scale_ratio;
+    int frame_height = world_height * scale_ratio;
 
     char** frame = new char*[frame_height];
     for(int i=0; i<frame_height; i++) {
@@ -52,12 +53,12 @@ int main() {
     };
 
     auto drawCircle = [&]() {
-        float d = ball->radius * 2.0f / 100.0f;
+        float d = ball->radius * 2.0f * scale_ratio;
         for(int i=0; i<d; i++) {
             for(int j=0; j<d; j++) {
                 if(d*d/4.0f >(i+0.5f-d/2.0f)*(i+0.5f-d/2.0f) + (j+0.5f-d/2.0f)*(j+0.5f-d/2.0f)) {
-                    Point p = { round((ball->position.x - ball->radius) / 100.0f + i + 0.5f), 
-                        round((ball->position.y - ball->radius) / 100.0f + j + 0.5f) };
+                    Point p = { round((ball->position.x - ball->radius) * scale_ratio + i + 0.5f),
+                        round((ball->position.y - ball->radius) * scale_ratio + j + 0.5f) };
                     if(isInFrame(p)) {
                         frame[(int)p.y][(int)p.x] = '@';
                     }
@@ -79,6 +80,7 @@ int main() {
 
         if(ball->position.y + ball->radius >= world_height) {
             ball->velocity.y *= -1;
+            ball->position.y = 2*world_height - 2*ball->radius - ball->position.y;
         }
         if(ball->position.y - ball->radius < 0) {
             //// 충돌한 시점 t에서 속도, 위치를 구함
@@ -101,10 +103,16 @@ int main() {
             // -> 이거 필요함..?
 
             ball->velocity.y *= -1;
-            //ball->position.y = ball->radius - ball->position.y;
+            ball->position.y = 2*ball->radius - ball->position.y;
         }
-        if(ball->position.x + ball->radius >= world_width || ball->position.x - ball->radius < 0) {
+        if(ball->position.x + ball->radius >= world_width) {
             ball->velocity.x *= -1;
+            ball->position.x = 2*world_width - 2*ball->radius - ball->position.x;
+
+        }
+        if(ball->position.x - ball->radius < 0) {
+            ball->velocity.x *= -1;
+            ball->position.x = 2*ball->radius - ball->position.x;
         }
 
         if(duration >= 10) {
