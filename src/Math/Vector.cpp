@@ -13,6 +13,10 @@ Vector::Vector(const Vector& vector) : Vector { vector.x, vector.y, vector.z } {
 
 }
 
+Vector::Vector(const Point& point) : Vector { point.x, point.y, point.z } {
+
+}
+
 Vector::Vector() : Vector { 0, 0, 0 } {
 
 }
@@ -104,9 +108,6 @@ float Math::angleBetween(const Vector& vector1, const Vector& vector2) {
 
 
 bool Math::isParallel(const Vector& vector1, const Vector& vector2) {
-    //Vector u1 = vector1 / vector1.magnitude();
-    //Vector u2 = vector2 / vector2.magnitude();        --> 이렇게 하면 실수 표현 한계 때문에 안맞을때도 있음
-    //return u1 == u2 || u1 == -u2;
     return vector1.x / vector2.x == vector1.y / vector2.y && vector1.y / vector2.y == vector1.z / vector2.z;
 }
 
@@ -118,4 +119,25 @@ bool Math::isOrthogonal(const Vector& vector1, const Vector& vector2) {
 std::ostream& Math::operator<<(std::ostream& os, Vector v) {
     os << "<" << v.x << ", " << v.y << ", " << v.z << ">";
     return os;
+}
+
+
+Vector Math::operator-(const Point& point1, const Point& point2) {
+    return Vector { point1.x - point2.x, point1.y - point2.y, point1.z - point2.z };
+}
+
+Point Math::operator+(const Point& point, const Vector& vector) {
+    return Point { point.x + vector.x, point.y + vector.y, point.z + vector.z };
+}
+
+Point Math::operator-(const Point& point, const Vector& vector) {
+    return Point { point.x - vector.x, point.y - vector.y, point.z - vector.z };
+}
+
+Point& Math::operator+=(Point& point, const Vector& vector) {
+    return point = point + vector;
+}
+
+Point& Math::operator-=(Point& point, const Vector& vector) {
+    return point = point - vector;
 }
