@@ -12,14 +12,14 @@ Object::Object() : Object { { 0, 0, 0 } } {
 }
 
 
-void JirungEngine::Object::update() {
-    position.x += velocity.x;
-    position.y += velocity.y;
-    position.z += velocity.z;
+void JirungEngine::Object::update(float dt) {
+    position.x += velocity.x * dt;
+    position.y += velocity.y * dt;
+    position.z += velocity.z * dt;
 
-    velocity.x += acceleration.x;
-    velocity.y += acceleration.y;
-    velocity.z += acceleration.z;
+    velocity.x += acceleration.x * dt;
+    velocity.y += acceleration.y * dt;
+    velocity.z += acceleration.z * dt;
 
 
 }

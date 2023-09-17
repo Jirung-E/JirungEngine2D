@@ -18,7 +18,7 @@ namespace JirungEngine {
         Object();
 
     public:
-        virtual void update();
+        virtual void update(float dt);
 
     };
 }
